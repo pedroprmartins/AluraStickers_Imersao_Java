@@ -21,10 +21,12 @@ public class App {
         String body = response.body();
 
 //____________ extrair só os dados que interessam (titulo, poster, classificação) ________________        
+       
         var parser = new JsonParser();
         List<Map<String, String>> listaDeFilmes = parser.parse(body);
 
 //____________ exibir e manipular os dados ________________________________________________________
+        
         var resetStyle = "\u001b[m";
         var piscando = "\u001b[5m";
         var negrito = "\u001b[1m";
