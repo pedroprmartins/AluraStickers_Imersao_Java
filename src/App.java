@@ -9,7 +9,6 @@ import java.util.Map;
 public class App {
 
     public static void main(String[] args) throws Exception {
-
  //___________ fazer uma conexão HTTP e buscar os top 250 filmes ________________________________
         
     	String url = "https://api.themoviedb.org/3/trending/movie/week?api_key=872995efee79646f5b0d834c33522673";
@@ -21,13 +20,11 @@ public class App {
         HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
         String body = response.body();
 
-//____________ extrair só os dados que interessam (titulo, poster, classificação) ________________
-        
+//____________ extrair só os dados que interessam (titulo, poster, classificação) ________________        
         var parser = new JsonParser();
         List<Map<String, String>> listaDeFilmes = parser.parse(body);
 
 //____________ exibir e manipular os dados ________________________________________________________
-        
         var resetStyle = "\u001b[m";
         var piscando = "\u001b[5m";
         var negrito = "\u001b[1m";
@@ -38,7 +35,6 @@ public class App {
         var good = "🥔";
         
         for (Map<String,String> filme : listaDeFilmes) {
-
             System.out.println(corTxt+corBkg+negrito+ filme.get("title")+resetStyle);
             System.out.println(prefixo+ filme.get("backdrop_path")+resetStyle);
 
