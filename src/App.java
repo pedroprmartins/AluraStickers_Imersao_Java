@@ -28,11 +28,11 @@ public class App {
 
 //____________ exibir e manipular os dados ________________________________________________________
         
-        String resetStyle = "\u001b[m";
-        String piscando = "\u001b[5m";
-        String negrito = "\u001b[1m";
-        String corTxt = "\u001b[31m";
-        String corBkg = "\u001b[47m";
+        var resetStyle = "\u001b[m";
+        var piscando = "\u001b[5m";
+        var negrito = "\u001b[1m";
+        var corTxt = "\u001b[31m";
+        var corBkg = "\u001b[47m";
         var star = "⭐";
         var shit = "💩";
         var good = "🥔";
