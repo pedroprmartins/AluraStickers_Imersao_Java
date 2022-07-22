@@ -1,18 +1,18 @@
-## Getting Started
+## AluraStikers
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Aplicação para consumir a API do IMDb e exibir os filmes mais populares, destacando seus pôsteres e visualizando sua classificação
 
-## Folder Structure
+## Estrutura de pastas
 
-The workspace contains two folders by default, where:
+A área de trabalho contém duas pastas por padrão, onde:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+- `src`: a pasta para manter os fontes
+- `lib`: a pasta para manter as dependências
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+Enquanto isso, os arquivos de saída compilados serão gerados na pasta `bin` por padrão.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+> Se você quiser personalizar a estrutura de pastas, abra `.vscode/settings.json` e atualize as configurações relacionadas lá.
 
-## Dependency Management
+<h1 align="center"> ## Em desenvolvimento... </h1>
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+![sardinhadev](https://user-images.githubusercontent.com/101142218/180475953-d5e45a6b-6149-41fa-8f86-cfa269624c61.jpeg)
