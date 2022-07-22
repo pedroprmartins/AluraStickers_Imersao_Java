@@ -1,4 +1,6 @@
+import java.io.InputStream;
 import java.net.URI;
+import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -35,10 +37,20 @@ public class App {
         var star = "⭐";
         var shit = "💩";
         var good = "🥔";
+        var geradora = new GeradoraDeFigurinhas();
         
         for (Map<String,String> filme : listaDeFilmes) {
-            System.out.println(corTxt+corBkg+negrito+ filme.get("title")+resetStyle);
-            System.out.println(prefixo+ filme.get("backdrop_path")+resetStyle);
+
+            String urlImagem = prefixo + filme.get("backdrop_path");
+            String titulo = filme.get("title");
+
+            InputStream inputStream = new URL(urlImagem).openStream();
+            String nomeArquivo = titulo + ".png";
+
+            geradora.cria(inputStream, nomeArquivo);
+
+            System.out.println(corTxt + corBkg + negrito + titulo + resetStyle);
+            System.out.println(urlImagem + resetStyle);
 
             var n = Double.valueOf(filme.get("vote_average")).doubleValue();
             var nota = (double) (Math.round(n*10.0)/10.0);
@@ -47,19 +59,19 @@ public class App {
                 for(int count = 0; count < 5; count++){
                     System.out.print(star);
                 }
-                System.out.println(corBkg+negrito+piscando+ nota +resetStyle);
+                System.out.println(corBkg + negrito + piscando + nota + resetStyle);
 
             }else if(nota < 8.0 && nota >= 7.0){
                 for(int count = 0; count < 5; count++){
                     System.out.print(good);
                 }
-                System.out.println(corBkg+negrito+piscando+ nota +resetStyle);
+                System.out.println(corBkg + negrito + piscando + nota + resetStyle);
 
             }else if(nota < 7.0){
                 for(int count = 0; count < 5; count++){
                     System.out.print(shit);
                 }
-                System.out.println(corBkg+negrito+piscando+ nota +resetStyle);
+                System.out.println(corBkg + negrito + piscando + nota + resetStyle);
             }
             System.out.println();
         }
