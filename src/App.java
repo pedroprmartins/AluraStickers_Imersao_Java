@@ -31,20 +31,21 @@ public class App {
 
         var titulo = new Rating();
         var urlImagem = new Rating();
+        var estrelas = new Rating();
         var geradora = new GeradoraDeFigurinhas();
         
         for (Map<String,String> filme : listaDeFilmes) {
 
             String urlPathImage = urlImagem.urlImagem(prefixo + filme.get("backdrop_path"));
             String titleMovie = titulo.modTitulo(filme.get("title"));
+            estrelas.ratingMovie(filme.get("vote_average"));
 
-            InputStream inputStream = new URL(urlPathImage).openStream();
-            String nomeArquivo = titleMovie + ".png";
-            geradora.cria(inputStream, nomeArquivo);
+            // InputStream inputStream = new URL(urlPathImage).openStream();
+            // String nomeArquivo = titleMovie + ".png";
+            // geradora.cria(inputStream, nomeArquivo);
 
-            // var valor = Double.valueOf(filme.get("vote_average")).doubleValue();
-            // var nota = (double) (Math.round(valor*10.0)/10.0);
             System.out.println(titleMovie);
+            System.out.println(estrelas);
             System.out.println();
         }
     }

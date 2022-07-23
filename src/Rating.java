@@ -8,6 +8,7 @@ public class Rating {
     private String star = "⭐";
     private String shit = "💩";
     private String good = "🥔";
+    private int count = 0;
     
     public String modTitulo(String titulo){
          return this.corTxt + this.corBkg + this.negrito + titulo + this.resetStyle;
@@ -17,26 +18,27 @@ public class Rating {
         return urlImagem;
     }
     
-    public String ratingMovie(double nota) {
+    public void ratingMovie(String vote) {
+
+        var valor = Double.valueOf(vote).doubleValue();
+        var nota = (double) (Math.round(valor*10.0)/10.0);
 
         if(nota >= 8.0){
-            for(int count = 0; count < 5; count++){
-                return star;
+            while(count < 5){
+                System.out.print(star);
+                count++;
             }
-            return corBkg + negrito + piscando + nota + resetStyle;
-
         }else if(nota < 8.0 && nota >= 7.0){
-            for(int count = 0; count < 5; count++){
-                return good;
+            while(count < 5){
+                System.out.print(good);
+                count++;
             }
-            return corBkg + negrito + piscando + nota + resetStyle;
-
         }else if(nota < 7.0){
-            for(int count = 0; count < 5; count++){
-                return shit;
-            }
-            return corBkg + negrito + piscando + nota + resetStyle;
+            while(count < 5){
+                System.out.print(shit);
+                count++;
+            }   
         }
-        return null; 
+        System.out.println(corBkg + negrito + piscando + nota + resetStyle);
     }
 }
