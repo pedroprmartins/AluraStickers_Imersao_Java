@@ -11,7 +11,7 @@ import java.util.Map;
 public class App {
 
     public static void main(String[] args) throws Exception {
- //___________ fazer uma conexão HTTP e buscar os top 250 filmes ________________________________
+ //_____fazer uma conexão HTTP e buscar os top 250 filmes 
         
     	String url = "https://api.themoviedb.org/3/trending/movie/week?api_key=872995efee79646f5b0d834c33522673";
     	String prefixo = "https://image.tmdb.org/t/p/w500";
@@ -22,57 +22,29 @@ public class App {
         HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
         String body = response.body();
 
-//____________ extrair só os dados que interessam (titulo, poster, classificação) ________________        
+//______extrair só os dados que interessam (titulo, poster, classificação)     
        
         var parser = new JsonParser();
         List<Map<String, String>> listaDeFilmes = parser.parse(body);
 
-//____________ exibir e manipular os dados ________________________________________________________
-        
-        var resetStyle = "\u001b[m";
-        var piscando = "\u001b[5m";
-        var negrito = "\u001b[1m";
-        var corTxt = "\u001b[31m";
-        var corBkg = "\u001b[47m";
-        var star = "⭐";
-        var shit = "💩";
-        var good = "🥔";
+//______exibir e manipular os dados
+
+        var titulo = new Rating();
+        var urlImagem = new Rating();
         var geradora = new GeradoraDeFigurinhas();
         
         for (Map<String,String> filme : listaDeFilmes) {
 
-            String urlImagem = prefixo + filme.get("backdrop_path");
-            String titulo = filme.get("title");
+            String urlPathImage = urlImagem.urlImagem(prefixo + filme.get("backdrop_path"));
+            String titleMovie = titulo.modTitulo(filme.get("title"));
 
-            InputStream inputStream = new URL(urlImagem).openStream();
-            String nomeArquivo = titulo + ".png";
-
+            InputStream inputStream = new URL(urlPathImage).openStream();
+            String nomeArquivo = titleMovie + ".png";
             geradora.cria(inputStream, nomeArquivo);
 
-            System.out.println(corTxt + corBkg + negrito + titulo + resetStyle);
-            System.out.println(urlImagem + resetStyle);
-
-            var n = Double.valueOf(filme.get("vote_average")).doubleValue();
-            var nota = (double) (Math.round(n*10.0)/10.0);
-            
-            if(nota >= 8.0){
-                for(int count = 0; count < 5; count++){
-                    System.out.print(star);
-                }
-                System.out.println(corBkg + negrito + piscando + nota + resetStyle);
-
-            }else if(nota < 8.0 && nota >= 7.0){
-                for(int count = 0; count < 5; count++){
-                    System.out.print(good);
-                }
-                System.out.println(corBkg + negrito + piscando + nota + resetStyle);
-
-            }else if(nota < 7.0){
-                for(int count = 0; count < 5; count++){
-                    System.out.print(shit);
-                }
-                System.out.println(corBkg + negrito + piscando + nota + resetStyle);
-            }
+            // var valor = Double.valueOf(filme.get("vote_average")).doubleValue();
+            // var nota = (double) (Math.round(valor*10.0)/10.0);
+            System.out.println(titleMovie);
             System.out.println();
         }
     }
